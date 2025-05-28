@@ -1,5 +1,142 @@
+\RequirePackage{silence} % silence errors and warning I can't do anything about
+
+% https://tex.stackexchange.com/a/108523/258167
+% problem of biblatex + gb4e. Safe to ignore iff you are NOT using ibid style
+% gb4e redefines \footnotetext for examples in footnotes
+% biblatex catches this.
+% This is probably something to resolve eventually.
+% Check out https://tex.stackexchange.com/a/327725/258167 for ideas on that
+\WarningFilter*{biblatex}{Patching footnotes failed.\MessageBreak Footnote detection will not work}
+
 \documentclass{article}
 
+\usepackage{biblatex}
+\usepackage{enumitem}
+\usepackage{gb4e}
+\usepackage{amsmath}
+
+\addbibresource{poster.bib}
+
 \begin{document}
-Hello World! This is new content.
+Hi. Our grand ideas of making a handout turned out to be much bigger than our actual time to make a handout out.
+
+Here are some ramblings and other things we went through but didn't quite want to get rid of while writting the original poster:
+
+\section{Upshot; What are epithets? (revisited)}
+So, to explain this distribution, we have two options to define epithets. Either they are...
+\begin{enumerate}[label=$\star$]
+	\item NP/DPs accompanied by an obligatory determiner
+	\item carriers of evaluative meaning
+\end{enumerate}
+or they
+\begin{enumerate}[label=$\star$]
+	\item contain pronouns ubnderlyingly, and
+\end{enumerate}
+\cite{aounEpithets2000,patel-groszEpithetsSyntaxsemanticsInterface2015,pottsExpressiveDimension2007,schlenkerMinimizeRestrictorsNotes2005}
+
+\begin{exe}
+	\ex {
+		\textbf{John_1} ran over a man (who was) trying to give \textbf{the idiot_1} directions.
+		\hfill\cite{dubinskyEpithetsAntilogophoricPronouns1998}:12
+	}\label{ex:classic-epithet}
+\end{exe}
+
+What exactly are epithets? In truth, our analysis along with much of the literature focuses on basically exactly \textit{the fool/bastard/idiot} as the prototypical forms. However, our given definition covers a much broader range of usages. Further study should give a strong argument for why we choose this as the definition. Moreover, a variety of examples with varying head determiners and sematic positivity/negativity, genericity, and definiteness along with otherwise exploring what can and cannot be epithets. Finally, comparison from epithets in literary studies: ``The epithets are decorative insofar as they are neither essential to the immediate context nor modeled especially for it. Among other things, they are extremely helpful to fill out a half-verse.'' \cite{burkertEbookOrientalizingRevolution1992}
+
+\section{Epithets are not pronouns} % Working title
+
+\begin{exe}
+	\ex {
+		o = grammatical
+		* = ungrammatical
+		? = odd
+		x = no data (e.g. failed base case)
+		\textit{Donkey Anaphora:} --- I don't have a split judgement here. Do we keep?
+		\begin{xlist}
+			\ex {Every teacher who has a terrible student_1 fails the idiot_1.} ooooo
+			\ex {Every teacher who has a terrible student_1 fails him_1.} ooooo
+		\end{xlist}
+	}\label{ex:donkey}
+
+	\ex {
+		1 = only meaning 1
+		2 = only meaning 2
+		o = both meanings
+		* = neither meanings
+		\textit{Paycheck Anaphora:}
+		\begin{xlist}
+			\ex[] {The man who sent his son to war was wiser than the man who sent him to college.} 1oo11
+			\ex[\#] {The man who sent his son to war was wiser than the man who sent the idiot to college.} 1oo11
+			\ex[] {
+				\begin{xlist}
+					\ex {Meaning 1: two different men send their own sons to different places}
+					\ex {Meaning 2: two different men send the same son to different places}  maybe gay couple
+				\end{xlist}
+			}
+		\end{xlist}
+	}\label{ex:paycheck}
+\end{exe}
+
+\begin{xlist}
+	\ex {
+		\textbf{Topicalization:}
+		\begin{xlist}
+			\ex[] {Himself_1, John_1 tripped over yesterday.} *x*xx
+			\ex[] {Him_1, John_1 tripped over yesterday.} *x*xx
+			\ex[] {The idiot_1, John_1 tripped over yesterday.}  oxoxx
+		\end{xlist}
+	}
+	\ex {
+		\textbf{Relative Clause:}
+		\begin{xlist}
+			\ex[] {It was himself_1 that John_1 tripped over yesterday.} ooo?o
+			\ex[] {It was him_1 that John_1 tripped over yesterday.} ***o*
+			\ex[] {It was the idiot_1 that John_1 tripped over yesterday.} ***o*
+		\end{xlist}
+	}
+	\ex {
+		\textbf{Wh-Questions:}
+		\begin{xlist}
+			\ex[] {John_1 showed Mary a terrible picture of the idiot_1.} o?o*o
+			\ex[] {Which terrible picture of himself_1 did John_1 show Mary.} oxooo
+			\ex[?] {Which terrible picture of him_1 did John_1 show Mary.} *xoo*
+			\ex[?] {Which terrible picture of the idiot_1 did John_1 show Mary.} ?x?*o
+			\ex[?] {Which terrible picture of John_1 did he_1 show Mary.} *x*o*
+			\ex[] {Which terrible picture of John_1 did the idiot_1 show Mary.} *x**o
+			\ex[*] {Who_1 did he_1 trip over?} oxooo
+			\ex[] {Who_1 did the idiot_1 trip over?} oxooo
+		\end{xlist}
+	}
+\end{xlist}
+
+\section{Epithets can be Bound Variable Anaphora}
+TODO: 'all the idiots'; quantificationally introduced nouns are generally not considered anaphoric; are these even evaluative?
+Each student got help from John. Each idiot subsequently ignored him.
+The teacher graded the squib that each idiot wrote.
+Context A: Each student wrote their own terrible squib
+*Context B: Each student collectively wrote a terrible group squib
+The teacher graded each squib that some idiot wrote.
+Context A: A single student writes terrible squibs
+Context B: each terrible squib is written be a different student
+
+As seen below, epithets can act as bound variables in quantificational and conjoined phrases:
+\begin{exe}
+	\ex {\textbf{\(\boldsymbol{\forall}\):}
+		Each driver_1 ran over the man who was trying to give the idiot_1 directions.\\
+		(Each driver)(\(\lambda\) x.x ran over the man who was trying to give x directions)
+	}
+	\ex {\textbf{and:}
+		Context: John and Tom are bad students. A different teacher helped each of them.\\
+		John_1 hit the teacher who helped the idiot_1 and Tom_2 did too.\\
+		(John)(\(\lambda\) x . x hit the teacher who helped x) AND (Tom)(\(\lambda\) x . x hit the teacher who helped x)
+	}
+	TODO: quantificational introduction and information structure
+	\ex {After the students_1 got help from John, the idiots_1 subsequently ignored him.}
+	\ex {
+		After the students_1 got help from John, all the students_1/idiots_1 ignored him on the test.
+	}
+	\ex {
+		After John helped the students, they/all the idiots/all the students ignored him.
+	}
+\end{exe}
 \end{document}
