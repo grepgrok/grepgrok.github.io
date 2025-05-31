@@ -1,3 +1,5 @@
+.DS_Store
+
 *.aux
 *.fdb_latexmk
 *.fls
@@ -7,3 +9,4 @@
 *.bcf
 *.blg
 *.run.xml
+*.out
